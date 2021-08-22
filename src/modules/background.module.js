@@ -1,7 +1,4 @@
 import {Module} from '@/core/module'
-import {random} from "@/utils"
-
-const colors = ['#FFC0CB', '#FFA07A', '#FFFFE0', '#ADD8E6', '#E0FFFF', '#20B2AA', '#90EE90', '#F08080']
 
 export class BackgroundModule extends Module {
     #elementLiBackgroundColor
@@ -14,19 +11,19 @@ export class BackgroundModule extends Module {
 
 
     #colorsRandom() {
-
-        return console.log( colors[random(0, colors.length - 1)])
+		const colors = ['#FFC0CB', '#FFA07A', '#FFFFE0', '#ADD8E6', '#E0FFFF', '#20B2AA', '#90EE90', '#F08080']
+        return colors[Math.floor(Math.random() * colors.length)]
     }
 
     #trigger() {
-
-        this.#elementLiBackgroundColor.style.bgColor = this.#colorsRandom();
+		
+      document.body.style.background = this.#colorsRandom()
 
     }
 
     render() {
         let ulMenu = document.querySelector('#menu')
-        ulMenu.innerHTML = this.toHTML()
+        ulMenu.innerHTML += this.toHTML()
 
     }
 

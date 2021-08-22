@@ -1,6 +1,8 @@
 import {Menu} from './core/menu.js'
 import Sound from './modules/sound.module.js'
 import CustomMessage from './modules/customMessage.module.js'
+import {BackgroundModule} from "./modules/background.module.js"
+import FigureModule from "./modules/figure.module.js"
 
 export default class ContextMenu extends Menu{
 	#element
@@ -33,6 +35,8 @@ export default class ContextMenu extends Menu{
 	}
 	add(){
 		const customMessageElement = new CustomMessage('message', 'Вызвать сообщение')
+		const backgroundModuleObject = new BackgroundModule('bgColor', 'Случайный цвет')
+		const figureModule = new FigureModule('figure', 'Случайная фигура')
 		const soundElement = new Sound('sound', 'Случайный звук')
 	}
 }
