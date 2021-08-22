@@ -5,11 +5,12 @@ const colors = ['#FFC0CB', '#FFA07A', '#FFFFE0', '#ADD8E6', '#E0FFFF', '#20B2AA'
 
 export class BackgroundModule extends Module {
     #elementLiBackgroundColor
-
+    #backgroundColor
     constructor(type, text) {
         super(type, text)
         this.#render()
         this.#elementLiBackgroundColor = document.querySelector('[data-type="bgColor"]')
+        this.#backgroundColor = document.querySelector('html')
         this.#eventShow()
     }
 
@@ -21,7 +22,7 @@ export class BackgroundModule extends Module {
 
     #trigger() {
 
-        this.#elementLiBackgroundColor.style.bgColor = this.#colorsRandom();
+        this.#backgroundColor.style.bgColor = this.#colorsRandom();
 
     }
 
