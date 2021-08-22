@@ -37,6 +37,6 @@ export class BackgroundModule extends Module {
     }
 
     #eventShow() {
-        this.#elementLiBackgroundColor.addEventListener("click", this.trigger.bind(this))
+        this.#elementLiBackgroundColor.addEventListener("click", this.#trigger.bind(this))
     }
 }
