@@ -1,5 +1,6 @@
 import {Menu} from './core/menu.js'
 import Sound from './modules/sound.module.js'
+import CustomMessage from './modules/customMessage.module.js'
 
 export default class ContextMenu extends Menu{
 	#element
@@ -31,6 +32,7 @@ export default class ContextMenu extends Menu{
 		})
 	}
 	add(){
-		const soundElement = new Sound('sound', 'случайный звук')
+		const customMessageElement = new CustomMessage('message', 'Вызвать сообщение')
+		const soundElement = new Sound('sound', 'Случайный звук')
 	}
 }
