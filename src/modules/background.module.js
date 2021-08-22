@@ -9,7 +9,6 @@ export class BackgroundModule extends Module {
         super(type, text)
         this.render()
          this.#elementLiBackgroundColor = document.querySelector('[data-type="bgColor"]')
-        //this.#elementLiBackgroundColor = document.querySelector('html')
         this.#eventShow()
     }
 
@@ -28,11 +27,6 @@ export class BackgroundModule extends Module {
     render() {
         let ulMenu = document.querySelector('#menu')
         ulMenu.innerHTML = this.toHTML()
-
-        // let newHtml = document.querySelector('html')
-        // console.log(newHtml)
-        // newHtml.style.bgColor='red'
-        // newHtml.innerHTML = this.toHTML()
 
     }
 
