@@ -1,6 +1,5 @@
-// import { Module } from "../core/module";
+import { Module } from "../core/module";
 import { random } from "../utils";
-
 // массив массивов с цветами для создания градиентов
 const arrGrad = [
   ["#92FFC0", "#002661"],
@@ -10,11 +9,16 @@ const arrGrad = [
   ["#3C8CE7", "#00EAFF"],
   ["#FFF720", "#3CD500"],
 ];
-
-export class FigureModule {
-  constructor() {
+export default class FigureModule extends Module {
+  #elementLiFigure;
+  #figure;
+  constructor(type, text) {
+    super(type, text);
     this.main = document.querySelector("#menu");
-    this.figure = document.createElement("div");
+    this.#figure = document.createElement("div");
+    this.render();
+    this.#elementLiFigure = document.querySelector('[data-type="figure"]');
+    this.#eventShow();
   }
   // эта функция возвращает массив случайный цифр в диапазоне от 1 до 100
   //например [100, 0, 15, 16, 22, 55, 44, 78]
@@ -27,41 +31,29 @@ export class FigureModule {
     let index = random(0, arrGrad.length - 1);
     return arrGrad[index];
   }
-
-  render() {
-    // временно. Удаляю класс .menu т.к. там свойство  display: none (из за этого не показывает фигуру)
-    this.main.classList.remove("menu");
-    this.main.classList.add("menuGradient");
-    // присваиваю значения переменных из массива randomArr
-    // дальше они используются для создания borderRadius
+  #trigger() {
     let [a, b, c, d, e, f, g, i] = this.randomArr();
-    const { width } = this.main.getBoundingClientRect();
+    const { width } = document.body.getBoundingClientRect();
     let height = width < 650 ? width : 650;
-
     let size = random(50, Math.round(height / 2));
     let colors = this.createGrad();
-
-    // динамическое размещение
     let x = random(0, width - (size + size / 2));
     let y = random(0, height - (size + size / 2));
-
-    console.log("x", x);
-    console.log("y", y);
-    this.figure.className = "figure";
-    // создание формы фигуры
-    this.figure.style.borderRadius = `${a}% ${b}% ${c}% ${d}% / ${e}% ${f}% ${g}% ${i}%`;
-    // размытие
-    this.figure.style.boxShadow = `0 0 2px ${colors[0]}, 0 0 10px ${colors[0]}`;
-    // создание размера фигуры
-    this.figure.style.height = `${size}px`;
-    this.figure.style.width = `${size}px`;
-
-    this.figure.style.top = `${y}px`;
-    this.figure.style.left = `${x}px`;
-
-    // создание градиента
-    this.figure.style.backgroundImage = `linear-gradient(135deg, ${colors[0]} 10%, ${colors[1]} 100%)`;
-    // встраиваю созданную фигуру в html
-    this.main.append(this.figure);
+    this.#figure.className = "figure";
+    this.#figure.style.borderRadius = `${a}% ${b}% ${c}% ${d}% / ${e}% ${f}% ${g}% ${i}%`;
+    this.#figure.style.boxShadow = `0 0 2px ${colors[0]}, 0 0 10px ${colors[0]}`;
+    this.#figure.style.height = `${size}px`;
+    this.#figure.style.width = `${size}px`;
+    this.#figure.style.top = `${y}px`;
+    this.#figure.style.left = `${x}px`;
+    this.#figure.style.backgroundImage = `linear-gradient(135deg, ${colors[0]} 10%, ${colors[1]} 100%)`;
+    document.body.append(this.#figure);
+  }
+  render() {
+    let ulMenu = document.querySelector("#menu");
+    ulMenu.innerHTML += this.toHTML();
+  }
+  #eventShow() {
+    this.#elementLiFigure.addEventListener("click", this.#trigger.bind(this));
   }
 }
