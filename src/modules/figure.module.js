@@ -1,5 +1,5 @@
-// import { Module } from "../core/module";
 import { random } from "../utils";
+import {Module} from '../core/module.js'
 
 // массив массивов с цветами для создания градиентов
 const arrGrad = [
@@ -11,8 +11,9 @@ const arrGrad = [
   ["#FFF720", "#3CD500"],
 ];
 
-export class FigureModule {
-  constructor() {
+export default class FigureModule extends Module{
+  constructor(type, text) {
+	  super(type, text)
     this.main = document.querySelector("#menu");
     this.figure = document.createElement("div");
   }
@@ -29,6 +30,9 @@ export class FigureModule {
   }
 
   render() {
+		let ulMenu = document.querySelector('#menu')
+		ulMenu.innerHTML += this.toHTML()
+		
     // временно. Удаляю класс .menu т.к. там свойство  display: none (из за этого не показывает фигуру)
     this.main.classList.remove("menu");
     this.main.classList.add("menuGradient");

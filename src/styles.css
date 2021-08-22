@@ -17,7 +17,7 @@ body {
 .menu {
   position: fixed;
   z-index: 1000;
-  width: 150px;
+  width: 180px;
   background: #1b1a1a;
   border-radius: 5px;
   display: none;
@@ -55,7 +55,7 @@ body {
 }
 
 
-/* .custom-message{
+.custom-message{
 	max-width: 500px;
 	position: fixed;
 	z-index: 1001;
@@ -75,4 +75,4 @@ body {
 }
 .close-message{
 	display: none;
-} */
+}
