@@ -18,10 +18,21 @@ export default class SoundModule extends Module{
 		let myAudio = new Audio(`../sounds/${randomNumber}.mp3`)
 		myAudio.play()
 		this.#elementLiSound.style.visibility = 'hidden'
-		this.#elementLiSound.style.textDecoration = 'underline'
-		setTimeout(() => {
-			this.#elementLiSound.style.visibility = 'visible'
-		}, 1000)
+		const promise = new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve('Промис успешно отработал!')
+			}, 2000)
+		})
+			.then((message) => {
+				console.log(message)
+				this.#elementLiSound.style.visibility = 'visible'
+			})
+			.catch((error) => {
+				throw new Error(error)
+			})
+			.finally(() => {
+				console.log('Окончание конструкции промиса')
+			})
 	}
 	#render(){
 		let ulMenu = document.querySelector('#menu')
